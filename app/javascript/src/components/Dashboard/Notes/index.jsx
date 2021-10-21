@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 
+import { Button, PageLoader } from "@bigbinary/neetoui/v2";
+import { Header, SubHeader } from "@bigbinary/neetoui/v2/layouts";
 import EmptyNotesListImage from "images/EmptyNotesList";
-import { Button, PageLoader } from "neetoui";
-import { Header, SubHeader } from "neetoui/layouts";
+import { BrowserRouter } from "react-router-dom";
 
 import notesApi from "apis/notes";
 import EmptyState from "components/Common/EmptyState";
@@ -41,16 +42,20 @@ const Notes = () => {
 
   return (
     <>
-      <Header
-        title="Notes"
-        actionBlock={
-          <Button
-            onClick={() => setShowNewNotePane(true)}
-            label="Add New Note"
-            icon="ri-add-line"
-          />
-        }
-      />
+      <BrowserRouter>
+        <Header
+          actionBlock={
+            <Button
+              label="Add Note +"
+              onClick={() => {
+                setShowNewNotePane(true);
+              }}
+            />
+          }
+          menuBarToggle={function noRefCheck() {}}
+          title="Notes"
+        />
+      </BrowserRouter>
       {notes.length ? (
         <>
           <SubHeader
