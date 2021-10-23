@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { Search, Settings, Plus } from "@bigbinary/neeto-icons";
 import { Typography, Input, Button, PageLoader } from "@bigbinary/neetoui/v2";
-import { Header, MenuBar, SubHeader } from "@bigbinary/neetoui/v2/layouts";
+import { Header, MenuBar } from "@bigbinary/neetoui/v2/layouts";
 import EmptyNotesListImage from "images/EmptyNotesList";
 
 import notesApi from "apis/notes";
@@ -16,7 +16,6 @@ const Notes = () => {
   const [loading, setLoading] = useState(true);
   const [showNewNotePane, setShowNewNotePane] = useState(false);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
   const [selectedNoteIds, setSelectedNoteIds] = useState([]);
   const [notes, setNotes] = useState([]);
   const [showMenu, setShowMenu] = useState(false);
@@ -124,17 +123,6 @@ const Notes = () => {
 
         {notes.length ? (
           <>
-            <SubHeader
-              searchProps={{
-                value: searchTerm,
-                onChange: e => setSearchTerm(e.target.value),
-                clear: () => setSearchTerm("")
-              }}
-              deleteButtonProps={{
-                onClick: () => setShowDeleteAlert(true),
-                disabled: !selectedNoteIds.length
-              }}
-            />
             <NoteTable
               selectedNoteIds={selectedNoteIds}
               setSelectedNoteIds={setSelectedNoteIds}
