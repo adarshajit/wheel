@@ -1,7 +1,13 @@
 import React from "react";
 
 import { Clock } from "@bigbinary/neeto-icons";
-import { Typography, Tag, Avatar, Tooltip } from "@bigbinary/neetoui/v2";
+import {
+  Typography,
+  Tag,
+  Avatar,
+  Tooltip,
+  Dropdown
+} from "@bigbinary/neetoui/v2";
 
 export default function NoteTable({ notes = [] }) {
   return (
@@ -10,12 +16,23 @@ export default function NoteTable({ notes = [] }) {
         return (
           <div
             key={note.id}
-            className="neeto-ui-border-black
-neeto-ui-shadow-s w-full h-40 p-5"
+            className="neeto-ui-border-black neeto-ui-shadow-s w-full h-40 p-5"
           >
-            <Typography style="h3" className="mb-3">
-              {note.title}
-            </Typography>
+            <div className="flex flex-row justify-between">
+              <Typography style="h3" className="mb-3">
+                {note.title}
+              </Typography>
+
+              <Dropdown
+                autoWidth={true}
+                buttonStyle="primary"
+                onClose={function noRefCheck() {}}
+                position="bottom-end"
+              >
+                <li>Edit</li>
+                <li>Delete</li>
+              </Dropdown>
+            </div>
 
             <p>{note.description}</p>
             <hr className="mt-8" />
